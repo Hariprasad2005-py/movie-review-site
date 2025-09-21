@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Reviews</title>
+</head>
+<style>
+    h1{
+        color:blue
+    }
+    h2{
+        color:crimson
+    }
+    body{
+        background-color: darkseagreen;
+    }
+    body {
+  background-image: repeating-linear-gradient(
+    45deg,             
+    #e0e0d5,             
+    #50c966 20px,        
+  );
+}
+</style>
+<body>
+
+<h1 style="text-align: center; font-size: 60px; color:blue">Movie Reviews</h1>
+<input
+  id="search"
+  placeholder="Type movie name"
+  style="font-size: 90px; padding: 5px; width: 800px; display: block; margin: 200px auto;">
+<div id="movies-container" style="margin-top:20px;"></div>
+
+<script>
+  const movies = [
+    {
+      title: "Vivah",
+      releasedYear: 2006,
+      genre: "Romance",
+      plot: "Poonam, a kind-hearted girl raised by her uncle Krishnakant, faces jealousy from her aunt Rama but remains close to cousin Rajni. Her simplicity impresses Prem, a businessman’s son, leading to their engagement and deepening love. Just before their wedding, Poonam saves Rajni from a fire and suffers severe burns. Rama, remorseful, finally accepts Poonam, and Prem vows to marry her regardless of her injuries. With support from doctors and family, Poonam recovers and marries Prem in a heartfelt ceremony.",
+      director: "Sooraj Barjathya",
+      language: "Hindi",
+      poster: "/vivah.jpeg"
+    },
+    {
+      title: "Inception",
+      releasedYear: 2010,
+      genre: "Scientific Fiction",
+      plot: "Dom Cobb (Leonardo DiCaprio) is a thief with the rare ability to enter people's dreams and steal their secrets from their subconscious. His skill has made him a hot commodity in the world of corporate espionage but has also cost him everything he loves. Cobb gets a chance at redemption when he is offered a seemingly impossible task: Plant an idea in someone's mind. If he succeeds, it will be the perfect crime, but a dangerous enemy anticipates Cobb's every move.",
+      director: "Christopher Nolan",
+      language: "English",
+      poster: "/incep.jpeg"
+    },
+   {
+  title: "3 Idiots",
+  releasedYear: 2009,
+  genre: "Comedy-Drama",
+  plot: "Three engineering students—Farhan, Raju, and the free-spirited Rancho—navigate the pressures of India's rigid academic system while discovering the true meaning of learning. Told through two timelines, the story explores friendship, innovation, and rebellion against outdated norms. Rancho inspires his friends to think differently, challenge authority, and pursue passion over pressure. As they search for him years later, they uncover truths that reshape their lives.",
+  director: "Rajkumar Hirani",
+  language: "Hindi",
+  poster: "/3 idiots.jpeg"
+},
+{
+  title: "Interstellar",
+  releasedYear: 2014,
+  genre: "Science Fiction",
+  plot: "In a future where Earth is ravaged by climate disasters and food shortages, former NASA pilot Joseph Cooper joins a team of scientists on a daring mission through a wormhole near Saturn to find a new habitable planet for humanity. As they journey across galaxies, Cooper faces mind-bending physics, emotional sacrifices, and the power of love that transcends time and space. The film explores themes of survival, gravity, and the human spirit.",
+  director: "Christopher Nolan",
+  language: "English",
+  poster: "/inter.jpeg"
+},
+{
+  title: "Smile",
+  releasedYear: 2022,
+  genre: "Psychological Horror",
+  plot: "Dr. Rose Cotter, a psychiatrist, witnesses the traumatic suicide of a patient who claims to be haunted by an invisible entity that appears as smiling people. After the incident, Rose begins experiencing terrifying hallucinations and uncannily smiling figures herself. As she investigates the curse, she discovers it spreads through trauma—passed from one victim to another when someone dies by suicide in front of a witness. Battling her own past and deteriorating mental state, Rose races to uncover the truth before the entity claims her.",
+  director: "Parker Finn",
+  language: "English",
+  poster: "/smile.jpeg"
+}
+  ];
+
+  const container = document.getElementById("movies-container");
+  const search = document.getElementById("search");
+
+  function displayMovie(movie) {
+    container.innerHTML = `
+      <h1 style="font-size: 40px; color: blue;">${movie.title}</h1>
+      <img src="${movie.poster}" width="400" style="border: 3px solid black;"><br><br>
+      <p style="font-size: 25px;"><strong>Plot:</strong> ${movie.plot}</p>
+      <p style="font-size: 25px;"><strong>Director:</strong> ${movie.director}</p>
+      <p style="font-size: 25px;"><strong>Year:</strong> ${movie.releasedYear}</p>
+      <p style="font-size: 25px;"><strong>Genre:</strong> ${movie.genre}</p>
+      <p style="font-size: 25px;"><strong>Language:</strong> ${movie.language}</p>
+    `;
+  }
+  // Search functionality
+  search.addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+    const found = movies.find(m => m.title.toLowerCase().includes(query));
+    if (found) {
+      displayMovie(found);
+    } else {
+      container.innerHTML = "<p style='font-size:50px; color:red;'>No movie found</p>";
+    }
+  });
+</script>
+
+</body>
+</html>
